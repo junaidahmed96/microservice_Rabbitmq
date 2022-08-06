@@ -1,0 +1,37 @@
+services:
+  movies:
+    build:
+      context: .
+      dockerfile: ./apps/movies/Dockerfile
+      target: development
+    command: npm run start:dev movies
+    env_file:
+      - ./apps/movies/.env
+    depends_on:
+      - genres
+
+      - rabbitmq
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '3000:3000'
+  genres:
+    build:
+      context: .
+      dockerfile: ./apps/genres/Dockerfile
+      target: development
+    command: npm run start:dev genres
+    env_file:
+      - ./apps/genres/.env
+    depends_on:
+      - rabbitmq
+
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+  rabbitmq:
+    image: rabbitmq
+    ports:
+      - '5672:5672'

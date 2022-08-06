@@ -1,0 +1,40 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/movies/src",
+  "monorepo": true,
+  "root": "apps/movies",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/movies/tsconfig.app.json"
+  },
+  "projects": {
+    "movies": {
+      "type": "application",
+      "root": "apps/movies",
+      "entryFile": "main",
+      "sourceRoot": "apps/movies/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/movies/tsconfig.app.json"
+      }
+    },
+    "genres": {
+      "type": "application",
+      "root": "apps/genres",
+      "entryFile": "main",
+      "sourceRoot": "apps/genres/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/genres/tsconfig.app.json"
+      }
+    },
+
+    "common": {
+      "type": "library",
+      "root": "libs/common",
+      "entryFile": "index",
+      "sourceRoot": "libs/common/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/common/tsconfig.lib.json"
+      }
+    }
+  }
+}
